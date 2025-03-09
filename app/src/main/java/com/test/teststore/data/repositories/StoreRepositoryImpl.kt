@@ -13,9 +13,8 @@ class StoreRepositoryImpl @Inject constructor(
     override suspend fun getAllProducts(): Results<List<Product>> =
         networkDataSource.getAllProducts()
 
-    override fun getDetailsOfProduct(id: Int): Product {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getDetailsOfProduct(id: Int): Results<Product> =
+        networkDataSource.getDetailsOfProduct(id = id)
 
     override fun saveProductToLocal(product: Product) {
         TODO("Not yet implemented")

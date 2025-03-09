@@ -1,15 +1,14 @@
 package com.test.teststore.app.screens.main
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.test.teststore.app.App
 import com.test.teststore.app.utils.subscribeToFlow
 import com.test.teststore.databinding.FragmentMainBinding
@@ -20,14 +19,19 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-
     private val titleAdapter by lazy {
-        TitleAdapter(navigate = {
-
-        })
+        TitleAdapter() {}
     }
 
-    private val listAdapter by lazy { ProductsAdapter() }
+    private val listAdapter by lazy {
+        ProductsAdapter(navigate = { id ->
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToDetailsFragment(
+                    id = id
+                )
+            )
+        })
+    }
     private val concatAdapter by lazy { ConcatAdapter(titleAdapter, listAdapter) }
 
     @Inject
@@ -63,7 +67,7 @@ class MainFragment : Fragment() {
     }
 
     private fun subscribeToFlow() = with(mViewModel) {
-        actionProduct.subscribeToFlow(
+        actionProducts.subscribeToFlow(
             lifecycleOwner = viewLifecycleOwner
         ) { list ->
             listAdapter.submitList(list)
@@ -78,14 +82,4 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-}
-
-class CenteredItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State
-    ) {
-        outRect.left = space / 2
-        outRect.right = space / 2
-        outRect.bottom = space
-    }
 }

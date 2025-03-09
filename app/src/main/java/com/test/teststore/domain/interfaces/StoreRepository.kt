@@ -5,7 +5,7 @@ import com.test.teststore.domain.models.Results
 
 interface StoreRepository {
     suspend fun getAllProducts(): Results<List<Product>>
-    fun getDetailsOfProduct(id: Int): Product
+    suspend fun getDetailsOfProduct(id: Int): Results<Product>
     fun saveProductToLocal(product: Product)
     fun getLocalProducts(): List<Product>
 }

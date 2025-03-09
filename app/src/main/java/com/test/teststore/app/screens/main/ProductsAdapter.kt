@@ -9,7 +9,9 @@ import com.test.teststore.app.utils.setImageByURL
 import com.test.teststore.databinding.ItemProductBinding
 import com.test.teststore.domain.models.Product
 
-class ProductsAdapter :
+class ProductsAdapter(
+    val navigate: (id: Int) -> Unit,
+) :
     ListAdapter<Product, ProductsAdapter.ProductViewHolder>(
         ContainerPosterDiffCallback
     ) {
@@ -41,6 +43,10 @@ class ProductsAdapter :
             tvPrice.text = "Price: ${model.price}"
 
             ivAvatar.setImageByURL(model.image.toString())
+
+            root.setOnClickListener{
+                navigate(model.id)
+            }
         }
     }
 
