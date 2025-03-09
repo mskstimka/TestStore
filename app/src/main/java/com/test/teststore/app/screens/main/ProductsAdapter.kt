@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.test.teststore.R
 import com.test.teststore.app.utils.setImageByURL
 import com.test.teststore.databinding.ItemProductBinding
 import com.test.teststore.domain.models.Product
@@ -40,11 +41,11 @@ class ProductsAdapter(
 
             tvTitle.text = model.title
             tvDescription.text = model.description
-            tvPrice.text = "Price: ${model.price}"
+            tvPrice.text = root.context.getString(R.string.price_text, model.price.toString())
 
             ivAvatar.setImageByURL(model.image.toString())
 
-            root.setOnClickListener{
+            root.setOnClickListener {
                 navigate(model.id)
             }
         }

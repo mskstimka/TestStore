@@ -2,4 +2,13 @@
     <string name="app_name">Test Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="price_text">%1$s $</string>
+    <string name="item_title_tvTitle_text"><![CDATA[Your saved Products ->]]></string>
+    <string name="item_title_btLocalProducts_text">Check</string>
+    <string name="fragment_details_ivAvatar_contentDescription">Product Image</string>
+    <string name="fragment_details_ivGradientImage_contentDescription">Gradient</string>
+    <string name="fragment_details_ivBackPressed_contentDescription">Back Pressed</string>
+    <string name="fragment_details_btLocal_text">ADD TO SAVED PRODUCTS</string>
+    <string name="fragment_main_root_contentDesctiption">Main Content</string>
+    <string name="item_product_ivAvatar_contentDescription">Product Image</string>
 </resources>

@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:contentDescription="Main Content"
+    android:contentDescription="@string/fragment_main_root_contentDesctiption"
     tools:context=".app.screens.main.MainFragment" />
 

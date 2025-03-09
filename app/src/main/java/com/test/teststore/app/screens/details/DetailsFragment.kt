@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.test.teststore.R
 import com.test.teststore.app.App
 import com.test.teststore.app.utils.setImageByURL
 import com.test.teststore.app.utils.subscribeToFlow
@@ -50,7 +52,11 @@ class DetailsFragment : Fragment() {
         tvTitle.text = product.title
         tvDescription.text = product.description
         tvCategory.text = product.category
-        tvPrice.text = "Price: ${product.price}"
+        tvPrice.text = getString(R.string.price_text, product.price.toString())
+
+        ivBackPressed.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun subscribeToFlow() = with(dViewModel) {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_title_root_layout_height">150dp</dimen>
+    <dimen name="item_title_tvTitle_textSize">20sp</dimen>
+    <dimen name="item_title_btLocalProducts_layout_margin">4dp</dimen>
+    <dimen name="fragment_details_glDetailsLineStart_begin">20dp</dimen>
+    <dimen name="fragment_details_glDetailsLineEnd_end">20dp</dimen>
+    <dimen name="fragment_details_glDetailsLineTop_begin">20dp</dimen>
+    <dimen name="fragment_details_glDetailsLineBottomOfImage_begin">400dp</dimen>
+    <dimen name="fragment_details_line_layout_height">4dp</dimen>
+    <dimen name="fragment_details_tvCategory_layout_margin">10dp</dimen>
+    <dimen name="fragment_details_tvCategory_textSize">16sp</dimen>
+    <dimen name="fragment_details_tvTitle_textSize">20sp</dimen>
+    <dimen name="fragment_details_tvPrice_textSize">24sp</dimen>
+    <dimen name="fragment_details_tvDescription_layout_marginTop">20dp</dimen>
+    <dimen name="fragment_details_tvDescription_textSize">14sp</dimen>
+    <dimen name="fragment_details_btLocal_layout_marginBottom">20dp</dimen>
+</resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,40 +8,95 @@
     android:orientation="vertical"
     tools:context=".app.screens.details.DetailsFragment">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/fragment_details_glDetailsLineStart_begin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineEnd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/fragment_details_glDetailsLineEnd_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/fragment_details_glDetailsLineTop_begin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineBottomOfImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/fragment_details_glDetailsLineBottomOfImage_begin" />
+
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/fragment_details_ivAvatar_contentDescription"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/glDetailsLineBottomOfImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/default_image" />
+
+    <ImageView
+        android:id="@+id/ivGradientImage"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="match_parent"
+        android:contentDescription="@string/fragment_details_ivGradientImage_contentDescription"
+        android:src="@drawable/shadow_effect"
+        app:layout_constraintBottom_toTopOf="@+id/glDetailsLineBottomOfImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
 
-        <ImageView
-            android:id="@+id/ivGradientImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/shadow_effect" />
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/ivBackPressed"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:contentDescription="@string/fragment_details_ivBackPressed_contentDescription"
+        android:src="@drawable/icon_on_back_pressed"
+        app:layout_constraintStart_toStartOf="@+id/glDetailsLineStart"
+        app:layout_constraintTop_toTopOf="@+id/glDetailsLineTop"
+        app:tint="@color/black_50" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_details_line_layout_height"
+        android:background="@color/black_50"
+        app:layout_constraintTop_toBottomOf="@id/glDetailsLineBottomOfImage" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="10dp">
+        app:layout_constraintEnd_toStartOf="@+id/glDetailsLineEnd"
+        app:layout_constraintStart_toStartOf="@+id/glDetailsLineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvatar">
 
         <TextView
             android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/fragment_details_tvCategory_layout_margin"
             android:ellipsize="end"
             android:gravity="end"
             android:maxLines="3"
             android:textColor="@color/color_text"
-            android:textSize="16sp"
+            android:textSize="@dimen/fragment_details_tvCategory_textSize"
             android:textStyle="bold"
             tools:text="Category" />
 
@@ -48,39 +104,48 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginEnd="60dp"
             android:maxLines="4"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="@dimen/fragment_details_tvTitle_textSize"
             android:textStyle="bold"
             tools:text="Title" />
-
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:ellipsize="end"
-            android:maxLines="7"
-            android:textColor="@color/color_text"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Description" />
-
 
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textColor="#E87474"
-            android:textSize="16sp"
+            android:textColor="#3A3A3B"
+            android:textSize="@dimen/fragment_details_tvPrice_textSize"
             android:textStyle="bold"
-            tools:text="PRICE: 1.5123" />
+            tools:text="1.5123 $" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_details_tvDescription_layout_marginTop"
+            android:ellipsize="end"
+            android:maxLines="8"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/fragment_details_tvDescription_textSize"
+            android:textStyle="bold"
+            tools:text="Description" />
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btLocal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fragment_details_btLocal_layout_marginBottom"
+        android:backgroundTint="@color/white"
+        android:text="@string/fragment_details_btLocal_text"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glDetailsLineEnd"
+        app:layout_constraintStart_toStartOf="@+id/glDetailsLineStart" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
