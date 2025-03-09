@@ -3,6 +3,7 @@ package com.test.teststore.data.di
 import com.google.gson.GsonBuilder
 import com.test.teststore.data.network.NetworkDataSourceImpl
 import com.test.teststore.data.network.StoreAPI
+import com.test.teststore.data.repositories.StoreRepositoryImpl
 import com.test.teststore.domain.STORE_URL
 import com.test.teststore.domain.interfaces.NetworkDataSource
 import dagger.Module
@@ -11,8 +12,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module
-class DataModule() {
+@Module(includes = [BindsDataModule::class])
+class DataModule {
 
     @Provides
     fun provideHttpClient(): OkHttpClient = OkHttpClient.Builder().build()
@@ -40,6 +41,11 @@ class DataModule() {
             storeApi = retrofit.create(StoreAPI::class.java),
         )
     }
+
+    @Provides
+    fun provideStoreRepository(networkDataSource: NetworkDataSource) = StoreRepositoryImpl(
+        networkDataSource = networkDataSource
+    )
 
     @Provides
     fun provideStoreApi(retrofit: Retrofit): StoreAPI {

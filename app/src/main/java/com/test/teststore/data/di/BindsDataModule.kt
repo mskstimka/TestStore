@@ -18,6 +18,4 @@ interface BindsDataModule {
     @Binds
     fun bindLocalDataSource(localDataSourceImpl: LocalDataSourceImpl): LocalDataSource
 
-    @Binds
-    fun bindNetworkDataSource(networkDataSourceImpl: NetworkDataSourceImpl): NetworkDataSource
 }
