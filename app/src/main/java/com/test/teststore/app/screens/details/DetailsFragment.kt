@@ -57,6 +57,14 @@ class DetailsFragment : Fragment() {
         ivBackPressed.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.btLocal.setOnClickListener {
+            dViewModel.insertProduct()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.toast_product_saved_text), Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun subscribeToFlow() = with(dViewModel) {

@@ -141,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fragment_details_btLocal_layout_marginBottom"
         android:backgroundTint="@color/white"
+        android:clickable="true"
         android:text="@string/fragment_details_btLocal_text"
         android:textColor="@color/color_text"
         app:layout_constraintBottom_toBottomOf="parent"

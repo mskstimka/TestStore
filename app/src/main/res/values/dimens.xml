@@ -15,4 +15,6 @@
     <dimen name="fragment_details_tvDescription_layout_marginTop">20dp</dimen>
     <dimen name="fragment_details_tvDescription_textSize">14sp</dimen>
     <dimen name="fragment_details_btLocal_layout_marginBottom">20dp</dimen>
+    <dimen name="fragment_local_products_tvTitle_textSize">24sp</dimen>
+    <dimen name="fragment_local_products_line_magrinTop">10dp</dimen>
 </resources>

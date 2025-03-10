@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_localProductsFragment"
+            app:destination="@id/localProductsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -22,5 +25,14 @@
             android:name="id"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/localProductsFragment"
+        android:name="com.test.teststore.app.screens.local.LocalProductsFragment"
+        android:label="fragment_local_products"
+        tools:layout="@layout/fragment_local_products" >
+        <action
+            android:id="@+id/action_localProductsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

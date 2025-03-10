@@ -11,4 +11,6 @@
     <string name="fragment_details_btLocal_text">ADD TO SAVED PRODUCTS</string>
     <string name="fragment_main_root_contentDesctiption">Main Content</string>
     <string name="item_product_ivAvatar_contentDescription">Product Image</string>
+    <string name="toast_product_saved_text">Product Saved!</string>
+    <string name="fragment_local_products_tvTitle_text">Saved Products</string>
 </resources>

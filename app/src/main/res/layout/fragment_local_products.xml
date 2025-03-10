@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".app.screens.local.LocalProductsFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/fragment_details_glDetailsLineStart_begin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineEnd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/fragment_details_glDetailsLineEnd_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glDetailsLineTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/fragment_details_glDetailsLineTop_begin" />
+
+    <ImageView
+        android:id="@+id/ivBackPressed"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:contentDescription="@string/fragment_details_ivBackPressed_contentDescription"
+        android:src="@drawable/icon_on_back_pressed"
+        app:layout_constraintStart_toStartOf="@+id/glDetailsLineStart"
+        app:layout_constraintTop_toTopOf="@+id/glDetailsLineTop"
+        app:tint="@color/black_50" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_local_products_tvTitle_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/fragment_local_products_tvTitle_textSize"
+        app:layout_constraintEnd_toStartOf="@+id/glDetailsLineEnd"
+        app:layout_constraintStart_toStartOf="@+id/glDetailsLineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivBackPressed" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_details_line_layout_height"
+        android:layout_marginTop="@dimen/fragment_local_products_line_magrinTop"
+        android:background="@color/black_50"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRoot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#98B2D8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

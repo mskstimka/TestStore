@@ -1,87 +1,88 @@
-package com.test.teststore.app.screens.main
+package com.test.teststore.app.screens.local
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.teststore.app.App
+import com.test.teststore.app.screens.main.ProductsAdapter
 import com.test.teststore.app.utils.subscribeToFlow
-import com.test.teststore.databinding.FragmentMainBinding
+import com.test.teststore.databinding.FragmentLocalProductsBinding
 import javax.inject.Inject
 
-class MainFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+class LocalProductsFragment : Fragment() {
+
+    private var _binding: FragmentLocalProductsBinding? = null
     private val binding get() = _binding!!
 
-    private val titleAdapter by lazy {
-        TitleAdapter(navigate = {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToLocalProductsFragment())
-        })
-    }
+    @Inject
+    lateinit var lViewmodel: LocalProductsViewModel
 
     private val listAdapter by lazy {
         ProductsAdapter(navigate = { id ->
             findNavController().navigate(
-                MainFragmentDirections.actionMainFragmentToDetailsFragment(
+                LocalProductsFragmentDirections.actionLocalProductsFragmentToDetailsFragment(
                     id = id
                 )
             )
         })
     }
-    private val concatAdapter by lazy { ConcatAdapter(titleAdapter, listAdapter) }
 
-    @Inject
-    lateinit var mViewModel: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(layoutInflater)
+        _binding = FragmentLocalProductsBinding.inflate(layoutInflater)
 
         (requireActivity().applicationContext as App).appComponent.inject(this)
 
-
-        mViewModel.getAllProducts()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeToFlow()
+
         initAdapter()
+        bindView()
+        subscribeToFlow()
+
+        lViewmodel.getLocalProducts()
+    }
+
+    private fun bindView() = with(binding){
+        ivBackPressed.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun initAdapter() = with(binding) {
-        root.layoutManager =
+        rvRoot.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        root.addItemDecoration(CenteredItemDecoration(16))
-        root.adapter = concatAdapter
-
-        titleAdapter.submitList(listOf(TitleModel()))
-
+        rvRoot.adapter = listAdapter
     }
 
-    private fun subscribeToFlow() = with(mViewModel) {
-        actionProducts.subscribeToFlow(
+    private fun subscribeToFlow() = with(lViewmodel) {
+        actionProduct.subscribeToFlow(
             lifecycleOwner = viewLifecycleOwner
         ) { list ->
+            Log.d("STORE", list.toString())
             listAdapter.submitList(list)
         }
-        actionMessage.subscribeToFlow(lifecycleOwner = viewLifecycleOwner) { message ->
-            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-        }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+        actionMessage.subscribeToFlow(lifecycleOwner = viewLifecycleOwner) { message ->
+            android.widget.Toast.makeText(
+                requireContext(),
+                message,
+                android.widget.Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 }
